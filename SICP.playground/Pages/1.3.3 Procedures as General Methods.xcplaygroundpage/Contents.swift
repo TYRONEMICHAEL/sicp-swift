@@ -1,7 +1,7 @@
 import Foundation
 
 func isCloseEnough(_ x: Double, _ y: Double) -> Bool {
-    return abs(x - y) < 0.0001
+    return abs(x - y) < 0.001
 }
 
 func isPositive(_ x: Double) -> Bool {
@@ -49,4 +49,12 @@ func sqrt(_ x: Double) -> Double {
     return fixedPoint(avg, x)
 }
 
-sqrt(9)
+sqrt(10)
+
+//// Exercise 1.35
+func goldenRatio(_ x: Double) -> Double {
+    let ratio: (Double) -> Double = { x in 1 + (1 / x) }
+    return fixedPoint(ratio, x)
+}
+
+goldenRatio(1)

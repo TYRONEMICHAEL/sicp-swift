@@ -95,3 +95,54 @@ func compose<A, B, C>(_ f: @escaping (B) -> C, _ g: @escaping (A) -> B) -> (A) -
 }
 
 compose(square, inc)(6)
+
+// Exercise 1.43
+
+func repeated(_ f: @escaping (Double) -> Double, _ count: Double) -> (Double) -> Double {
+    if count == 1 {
+        return f
+    }
+    return repeated(compose(f, f), count - 1)
+}
+
+let squareRepeat = repeated(square, 2)
+squareRepeat(5)
+
+// Exercise 1.44
+
+let tolerance = 0.0001
+
+func smooth(_ f: @escaping (Double) -> Double) -> (Double) -> Double {
+    return { x in
+        let avg: (Double, Double, Double) -> Double = { a, b, c in return a + b + c / 3 }
+        return avg(f(x), f(x - tolerance), f(x + tolerance))
+    }
+}
+
+// Exercise 1.46
+
+func isGoodEnough(_ guess: Double, _ prevGuess: Double) -> Bool {
+    return abs(guess - prevGuess) < 0.001
+}
+
+func improveGuess(_ guess: Double, _ x: Double) -> Double {
+    return ((x / guess) + guess) / 2
+}
+
+func iterativeImprove(_ f: @escaping (Double, Double) -> Double, _ g: @escaping (Double, Double) -> Bool) -> (Double) -> Double {
+    return { x in
+
+        func improve(_ guess: Double, _ prevGuess: Double) -> Double {
+            if g(guess, prevGuess) {
+                return guess
+            }
+            return improve(f(guess, x), guess)
+        }
+
+        return improve(1, 0)
+    }
+}
+
+let improvedSqrt = iterativeImprove(improveGuess, isGoodEnough)
+improvedSqrt(9)
+

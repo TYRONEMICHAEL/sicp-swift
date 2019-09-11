@@ -12,5 +12,15 @@
         <page name='1.3.4 Procedures as Returned Values'/>
         <page name='2.1 Introduction to Data Abstraction'/>
         <page name='2.2 Hierarchical Data and the Closure Property'/>
+        <page name='2.2.2 Hierachal Structures'/>
+        <page name='2.2.3 Sequences as Conventional Interfaces'/>
+        <page name='2.2.3 Sequences as Conventional Interfaces Part 2'/>
+        <page name='Permutations'/>
+        <page name='Subsets'/>
+        <page name='2.3 Symbolic Data'/>
+        <page name='2.3.3 Representing Sets'/>
+        <page name='2.3.3 Balanced Binary Trees'/>
+        <page name='2.3.3 Huffman Encoding Tree'/>
+        <page name='Scratch'/>
     </pages>
 </playground>

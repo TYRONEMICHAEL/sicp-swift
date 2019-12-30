@@ -21,6 +21,11 @@
         <page name='2.3.3 Representing Sets'/>
         <page name='2.3.3 Balanced Binary Trees'/>
         <page name='2.3.3 Huffman Encoding Tree'/>
-        <page name='Scratch'/>
+        <page name='3.1 Assignment and Local State'/>
+        <page name='3.1.3 The Costs of Introducing Assignment'/>
+        <page name='3.3.2 Representing Queues'/>
+        <page name='3.3.4 A Simulator For Digital Circuits'/>
+        <page name='3.5.1 Streams'/>
+        <page name='3.5.2 Infinite Streams'/>
     </pages>
 </playground>

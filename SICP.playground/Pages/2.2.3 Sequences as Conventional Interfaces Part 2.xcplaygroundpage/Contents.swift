@@ -4,6 +4,14 @@ func dropFirst<A>(_ arr: [A]) -> [A] {
     return Array(arr.dropFirst(1))
 }
 
+func reduce<A, B>(_ fn: (A, B) -> B, _ initial: B, _ list: [A]) -> B {
+    guard let value = list.first else {
+        return initial
+    }
+
+    return fn(value, reduce(fn, initial, Array(list.dropFirst(1))))
+}
+
 func foldRight<A, B>(_ fn: (A, B) -> B, _ initial: B, _ list: [A]) -> B {
     guard let value = list.first else {
         return initial
@@ -32,27 +40,29 @@ func map<A, B>(_ fn: (A) -> B, _ list: [A]) -> [B] {
     return [fn(value)] + map(fn, dropFirst(list))
 }
 
-func map<A>(_ fn: (A) -> [A], _ list: [A]) -> [[A]] {
-    guard let value = list.first else {
-        return []
-    }
-
-    return [fn(value)] + map(fn, dropFirst(list))
-}
+//func map<A>(_ fn: (A) -> [A], _ list: [A]) -> [[A]] {
+//    guard let value = list.first else {
+//        return []
+//    }
+//
+//    return [fn(value)] + map(fn, dropFirst(list))
+//}
 
 func flatMap<A, B>(_ fn: (A) -> [B], _ list: [A]) -> [B] {
     return foldRight(+, [], map(fn, list))
 }
 
 let sum: (Int, Int) -> Int = { a, b in a + b }
+let append: (String, String) -> String = { a, b in a + b }
 
-foldRight(sum, 0, [1, 2, 3])
+reduce(sum, 0, [1, 2, 3])
+foldLeft(append, "", ["Hello", "World"])
 foldLeft(sum, 0, [1, 2, 3])
 
 let square: (Int) -> Int = { x in x * x }
 let squareF: (Int) -> [Int] = { x in [x * x] }
 
-//map(square, [1, 2, 3])
+map(squareF, [1, 2, 3])
 flatMap(squareF, [1, 2, 3])
 
 func remove<A: Equatable>(_ a: A, _ arr: [A]) -> [A] {
